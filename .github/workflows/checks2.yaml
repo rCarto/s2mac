@@ -30,10 +30,8 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-      - name: install pkg & test
-        run: |
-          install.packages('s2')
-          library('s2')
-          g = as_s2_geography(TRUE)
+      - name: install pkg
+        run: install.packages(c("s2", "sf", "mapsf"))
         shell: Rscript {0}
-
+      - name: test s2
+        run: Rscript script.R
